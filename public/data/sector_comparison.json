@@ -1,0 +1,235 @@
+{
+  "bkpm_sectors": [
+    {
+      "nama_sektor": "Industri Logam Dasar, Barang Logam, Bukan Mesin dan Peralatannya",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 1476837.8,
+      "pma_milyar": 1287213.43,
+      "pmdn_milyar": 189624.37
+    },
+    {
+      "nama_sektor": "Transportasi, Gudang dan Telekomunikasi",
+      "sektor_utama": "Sektor Tersier",
+      "total_investasi_milyar": 1447602.81,
+      "pma_milyar": 578706.54,
+      "pmdn_milyar": 868896.27
+    },
+    {
+      "nama_sektor": "Pertambangan",
+      "sektor_utama": "Sektor Primer",
+      "total_investasi_milyar": 1215981.72,
+      "pma_milyar": 637383.64,
+      "pmdn_milyar": 578598.07
+    },
+    {
+      "nama_sektor": "Perumahan, Kawasan Industri dan Perkantoran",
+      "sektor_utama": "Sektor Tersier",
+      "total_investasi_milyar": 1050865.96,
+      "pma_milyar": 469583.41,
+      "pmdn_milyar": 581282.55
+    },
+    {
+      "nama_sektor": "Listrik, Gas dan Air",
+      "sektor_utama": "Sektor Tersier",
+      "total_investasi_milyar": 988172.48,
+      "pma_milyar": 586472.72,
+      "pmdn_milyar": 401699.76
+    },
+    {
+      "nama_sektor": "Industri Makanan",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 849869.74,
+      "pma_milyar": 345592.42,
+      "pmdn_milyar": 504277.32
+    },
+    {
+      "nama_sektor": "Industri Kimia Dan Farmasi",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 786730.05,
+      "pma_milyar": 477665.65,
+      "pmdn_milyar": 309064.4
+    },
+    {
+      "nama_sektor": "Jasa Lainnya",
+      "sektor_utama": "Sektor Tersier",
+      "total_investasi_milyar": 687431.99,
+      "pma_milyar": 306116.66,
+      "pmdn_milyar": 381315.32
+    },
+    {
+      "nama_sektor": "Tanaman Pangan, Perkebunan, dan Peternakan",
+      "sektor_utama": "Sektor Primer",
+      "total_investasi_milyar": 642560.24,
+      "pma_milyar": 248773.59,
+      "pmdn_milyar": 393786.65
+    },
+    {
+      "nama_sektor": "Perdagangan dan Reparasi",
+      "sektor_utama": "Sektor Tersier",
+      "total_investasi_milyar": 525937.31,
+      "pma_milyar": 176411.52,
+      "pmdn_milyar": 349525.8
+    },
+    {
+      "nama_sektor": "Konstruksi",
+      "sektor_utama": "Sektor Tersier",
+      "total_investasi_milyar": 502592.08,
+      "pma_milyar": 56998.43,
+      "pmdn_milyar": 445593.65
+    },
+    {
+      "nama_sektor": "Industri Kertas dan Percetakan",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 402146.51,
+      "pma_milyar": 306723.41,
+      "pmdn_milyar": 95423.1
+    },
+    {
+      "nama_sektor": "Industri Kendaraan Bermotor dan Alat Transportasi Lain",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 322267.83,
+      "pma_milyar": 274312.39,
+      "pmdn_milyar": 47955.44
+    },
+    {
+      "nama_sektor": "Hotel dan Restoran",
+      "sektor_utama": "Sektor Tersier",
+      "total_investasi_milyar": 321985.07,
+      "pma_milyar": 126614.56,
+      "pmdn_milyar": 195370.52
+    },
+    {
+      "nama_sektor": "Industri  Mesin, Elektronik, Instrumen Kedokteran, Peralatan Listrik, Presisi, Optik dan Jam",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 228998.8,
+      "pma_milyar": 195328.06,
+      "pmdn_milyar": 33670.74
+    },
+    {
+      "nama_sektor": "Industri Mineral Non Logam",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 217104.23,
+      "pma_milyar": 118018.34,
+      "pmdn_milyar": 99085.89
+    },
+    {
+      "nama_sektor": "Industri Karet dan Plastik",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 180107.15,
+      "pma_milyar": 103616.4,
+      "pmdn_milyar": 76490.75
+    },
+    {
+      "nama_sektor": "Industri Tekstil",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 136689.23,
+      "pma_milyar": 79528.34,
+      "pmdn_milyar": 57160.9
+    },
+    {
+      "nama_sektor": "Kehutanan",
+      "sektor_utama": "Sektor Primer",
+      "total_investasi_milyar": 122362.76,
+      "pma_milyar": 12342.03,
+      "pmdn_milyar": 110020.74
+    },
+    {
+      "nama_sektor": "Industri Barang dari Kulit dan Alas Kaki",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 104992.9,
+      "pma_milyar": 96612.29,
+      "pmdn_milyar": 8380.61
+    },
+    {
+      "nama_sektor": "Industri Lainnya",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 93486.31,
+      "pma_milyar": 60548.95,
+      "pmdn_milyar": 32937.35
+    },
+    {
+      "nama_sektor": "Industri Kayu",
+      "sektor_utama": "Sektor Sekunder",
+      "total_investasi_milyar": 65504.17,
+      "pma_milyar": 29189.16,
+      "pmdn_milyar": 36315.01
+    },
+    {
+      "nama_sektor": "Perikanan",
+      "sektor_utama": "Sektor Primer",
+      "total_investasi_milyar": 21229.7,
+      "pma_milyar": 8998.17,
+      "pmdn_milyar": 12231.52
+    }
+  ],
+  "bps_sectors": [
+    {
+      "sektor": "C Industri Pengolahan",
+      "total_pdrb_adhb_milyar": 46595320.09
+    },
+    {
+      "sektor": "G Perdagangan Besar dan Eceran, Reparasi Mobil dan Sepeda Motor",
+      "total_pdrb_adhb_milyar": 28672214.07
+    },
+    {
+      "sektor": "A Pertanian, Kehutanan dan Perikanan",
+      "total_pdrb_adhb_milyar": 25442249.27
+    },
+    {
+      "sektor": "F Konstruksi",
+      "total_pdrb_adhb_milyar": 20837822.18
+    },
+    {
+      "sektor": "B Pertambangan dan Penggalian",
+      "total_pdrb_adhb_milyar": 14762561.27
+    },
+    {
+      "sektor": "H Transportasi dan Pergudangan",
+      "total_pdrb_adhb_milyar": 9249935.12
+    },
+    {
+      "sektor": "J Informasi dan Komunikasi",
+      "total_pdrb_adhb_milyar": 8828246.31
+    },
+    {
+      "sektor": "K Jasa Keuangan dan Asuransi",
+      "total_pdrb_adhb_milyar": 8072069.01
+    },
+    {
+      "sektor": "O Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib",
+      "total_pdrb_adhb_milyar": 7376321.26
+    },
+    {
+      "sektor": "P Jasa Pendidikan",
+      "total_pdrb_adhb_milyar": 6765375.18
+    },
+    {
+      "sektor": "I Penyediaan Akomodasi dan Makan Minum",
+      "total_pdrb_adhb_milyar": 6719086.41
+    },
+    {
+      "sektor": "L Real Estate",
+      "total_pdrb_adhb_milyar": 5800334.93
+    },
+    {
+      "sektor": "M,N Jasa Perusahaan",
+      "total_pdrb_adhb_milyar": 3771820.89
+    },
+    {
+      "sektor": "R,S,T,U Jasa Lainnya",
+      "total_pdrb_adhb_milyar": 3595279.8
+    },
+    {
+      "sektor": "Q Jasa Kesehatan dan Kegiatan Sosial",
+      "total_pdrb_adhb_milyar": 2519690.65
+    },
+    {
+      "sektor": "D Pengadaan Listrik dan Gas",
+      "total_pdrb_adhb_milyar": 575897.86
+    },
+    {
+      "sektor": "E Pengadaan Air, Pengelolaan Sampah, Limbah dan Daur Ulang",
+      "total_pdrb_adhb_milyar": 158988.57
+    }
+  ]
+}

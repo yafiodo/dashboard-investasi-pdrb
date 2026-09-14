@@ -1,0 +1,135 @@
+[
+  {
+    "id": "news-01",
+    "title": "Realisasi Investasi Indonesia Tembus Rekor Baru Ditopang Hilirisasi Mineral",
+    "category": "Kebijakan Nasional",
+    "date": "2026-08-15",
+    "source": "Kementerian Investasi / BKPM",
+    "summary": "Menteri Investasi menegaskan bahwa aliran penanaman modal asing (PMA) dan PMDN terus melonjak seiring beroperasinya proyek-proyek smelter dan ekosistem industri hilir di kawasan timur Indonesia.",
+    "provinces": [
+      "Sulawesi Tengah",
+      "Maluku Utara",
+      "Papua"
+    ],
+    "sectors": [
+      "Pertambangan dan Penggalian",
+      "Industri Pengolahan"
+    ],
+    "impact": "Mendorong pertumbuhan PDRB sektor manufaktur dan ekspor bahan olahan bernilai tambah tinggi di atas rata-rata nasional."
+  },
+  {
+    "id": "news-02",
+    "title": "BPS Catat Pertumbuhan PDRB Wilayah Luar Jawa Tumbuh Agresif Melampaui Jawa",
+    "category": "Rilis Statistik BPS",
+    "date": "2026-05-10",
+    "source": "Badan Pusat Statistik",
+    "summary": "Distribusi investasi yang kian merata ke luar Pulau Jawa (mencapai lebih dari 53% dari total investasi nasional) memberikan dampak multiplikasi nyata pada pertumbuhan PDRB riil di Sulawesi, Maluku, dan Kalimantan.",
+    "provinces": [
+      "Sulawesi Tengah",
+      "Maluku Utara",
+      "Kalimantan Timur"
+    ],
+    "sectors": [
+      "Produk Domestik Regional Bruto",
+      "Industri Pengolahan"
+    ],
+    "impact": "Memperbaiki ketimpangan ekonomi spasial dan menggeser pusat gravitasi ekonomi baru ke koridor timur."
+  },
+  {
+    "id": "news-03",
+    "title": "Proyek Ekosistem Baterai dan Kendaraan Listrik Terintegrasi di Jawa Barat Mulai Produksi Komersial",
+    "category": "Manufaktur & EV",
+    "date": "2026-07-22",
+    "source": "Kementerian Perindustrian",
+    "summary": "Fasilitas sel baterai dan perakitan EV di kawasan industri Karawang membukukan realisasi investasi ratusan triliun rupiah, menyerap puluhan ribu tenaga kerja lokal.",
+    "provinces": [
+      "Jawa Barat"
+    ],
+    "sectors": [
+      "Industri Pengolahan",
+      "Transportasi dan Pergudangan"
+    ],
+    "impact": "Memperkuat dominasi Jawa Barat sebagai episentrum manufaktur otomotif modern dengan kontribusi PDRB manufaktur terbesar di Indonesia."
+  },
+  {
+    "id": "news-04",
+    "title": "Pembangunan Kawasan Inti IKN Nusantara Dongkrak PDRB Sektor Konstruksi Kalimantan Timur",
+    "category": "Infrastruktur & IKN",
+    "date": "2026-06-05",
+    "source": "Otorita IKN",
+    "summary": "Masuknya investasi swasta dalam negeri (PMDN) untuk perhotelan, hunian, rumah sakit, dan pusat perbelanjaan di Nusantara mengerek laju pertumbuhan PDRB sektor konstruksi dan real estate Kaltim hingga dua digit.",
+    "provinces": [
+      "Kalimantan Timur"
+    ],
+    "sectors": [
+      "Konstruksi",
+      "Real Estate"
+    ],
+    "impact": "Diversifikasi struktur ekonomi Kalimantan Timur dari ketergantungan minyak dan batu bara ke sektor perkotaan modern."
+  },
+  {
+    "id": "news-05",
+    "title": "Hilirisasi Nikel dan Bauksit di Morowali dan Weda Bay Picu Lonjakan PDRB Spektakuler",
+    "category": "Hilirisasi Logam",
+    "date": "2026-04-18",
+    "source": "Dinas Penanaman Modal Sulteng & Malut",
+    "summary": "Rasio realisasi investasi terhadap PDRB di Sulawesi Tengah dan Maluku Utara mencapai salah satu yang tertinggi di dunia, dengan pertumbuhan PDRB riil industri pengolahan rata-rata melesat di atas 15-20% YoY.",
+    "provinces": [
+      "Sulawesi Tengah",
+      "Maluku Utara"
+    ],
+    "sectors": [
+      "Industri Pengolahan",
+      "Pertambangan dan Penggalian"
+    ],
+    "impact": "Menjadikan kawasan tersebut pusat pengolahan nikel global dan rantai pasok baja tahan karat dunia."
+  },
+  {
+    "id": "news-06",
+    "title": "Kawasan Ekonomi Khusus (KEK) Pariwisata dan Kesehatan Sanur Bali Tarik Investor Global",
+    "category": "Pariwisata & Jasa",
+    "date": "2026-03-30",
+    "source": "Dewan Nasional KEK",
+    "summary": "Investasi layanan kesehatan berstandar internasional dan perhotelan terpadu di KEK Sanur mengembalikan trajektori pertumbuhan PDRB Bali ke level pra-pandemi.",
+    "provinces": [
+      "Bali"
+    ],
+    "sectors": [
+      "Penyediaan Akomodasi dan Makan Minum",
+      "Jasa Kesehatan dan Kegiatan Sosial"
+    ],
+    "impact": "Peningkatan tajam PDRB sektor tersier dan devisa sektor pariwisata premium berbasis medical tourism."
+  },
+  {
+    "id": "news-07",
+    "title": "DKI Jakarta Perkuat Transformasi Sebagai Pusat Finansial dan Layanan Digital Global",
+    "category": "Finansial & Jasa",
+    "date": "2026-02-14",
+    "source": "Pemerintah Provinsi DKI Jakarta",
+    "summary": "Meskipun fungsi ibu kota berpindah ke IKN, DKI Jakarta tetap menjadi magnet investasi sektor jasa keuangan, teknologi informasi, dan kantor pusat multinasional dengan PDRB nominal melebihi Rp 3.500 Triliun.",
+    "provinces": [
+      "DKI Jakarta"
+    ],
+    "sectors": [
+      "Jasa Keuangan dan Asuransi",
+      "Informasi dan Komunikasi"
+    ],
+    "impact": "Efisiensi ICOR yang tinggi dan pertumbuhan sektor jasa bernilai tambah tinggi yang stabil."
+  },
+  {
+    "id": "news-08",
+    "title": "Ekspansi Investasi Smelter Tembaga Terbesar di Gresik Dorong PDRB Jawa Timur",
+    "category": "Hilirisasi Logam",
+    "date": "2026-01-20",
+    "source": "BKPM & Pemprov Jawa Timur",
+    "summary": "Smelter temaga single-line terbesar di dunia di KEK JIIPE Gresik beroperasi penuh, meningkatkan nilai tambah konsentrat temaga dan emas secara domestik.",
+    "provinces": [
+      "Jawa Timur"
+    ],
+    "sectors": [
+      "Industri Pengolahan",
+      "Perdagangan Besar dan Eceran"
+    ],
+    "impact": "Memperkuat integrasi rantai pasok industri hilir Jawa Timur dan meningkatkan kontribusi ekspor non-migas."
+  }
+]
