@@ -5,7 +5,8 @@
     "category": "Kebijakan Nasional",
     "date": "2026-08-15",
     "source": "Kementerian Investasi / BKPM",
-    "summary": "Menteri Investasi menegaskan bahwa aliran penanaman modal asing (PMA) dan PMDN terus melonjak seiring beroperasinya proyek-proyek smelter dan ekosistem industri hilir di kawasan timur Indonesia.",
+    "url": "https://bkpm.go.id/id/publikasi/siaran-pers",
+    "summary": "Kementerian Investasi menegaskan bahwa aliran penanaman modal asing (PMA) dan PMDN terus melonjak seiring beroperasinya proyek-proyek smelter dan ekosistem industri hilir di kawasan timur Indonesia.",
     "provinces": [
       "Sulawesi Tengah",
       "Maluku Utara",
@@ -23,6 +24,7 @@
     "category": "Rilis Statistik BPS",
     "date": "2026-05-10",
     "source": "Badan Pusat Statistik",
+    "url": "https://www.bps.go.id/id/pressrelease",
     "summary": "Distribusi investasi yang kian merata ke luar Pulau Jawa (mencapai lebih dari 53% dari total investasi nasional) memberikan dampak multiplikasi nyata pada pertumbuhan PDRB riil di Sulawesi, Maluku, dan Kalimantan.",
     "provinces": [
       "Sulawesi Tengah",
@@ -40,7 +42,8 @@
     "title": "Proyek Ekosistem Baterai dan Kendaraan Listrik Terintegrasi di Jawa Barat Mulai Produksi Komersial",
     "category": "Manufaktur & EV",
     "date": "2026-07-22",
-    "source": "Kementerian Perindustrian",
+    "source": "Kementerian Perindustrian RI",
+    "url": "https://kemenperin.go.id/artikel",
     "summary": "Fasilitas sel baterai dan perakitan EV di kawasan industri Karawang membukukan realisasi investasi ratusan triliun rupiah, menyerap puluhan ribu tenaga kerja lokal.",
     "provinces": [
       "Jawa Barat"
@@ -56,7 +59,8 @@
     "title": "Pembangunan Kawasan Inti IKN Nusantara Dongkrak PDRB Sektor Konstruksi Kalimantan Timur",
     "category": "Infrastruktur & IKN",
     "date": "2026-06-05",
-    "source": "Otorita IKN",
+    "source": "Otorita Ibu Kota Nusantara",
+    "url": "https://ikn.go.id/berita",
     "summary": "Masuknya investasi swasta dalam negeri (PMDN) untuk perhotelan, hunian, rumah sakit, dan pusat perbelanjaan di Nusantara mengerek laju pertumbuhan PDRB sektor konstruksi dan real estate Kaltim hingga dua digit.",
     "provinces": [
       "Kalimantan Timur"
@@ -73,6 +77,7 @@
     "category": "Hilirisasi Logam",
     "date": "2026-04-18",
     "source": "Dinas Penanaman Modal Sulteng & Malut",
+    "url": "https://dpmptsp.sultengprov.go.id",
     "summary": "Rasio realisasi investasi terhadap PDRB di Sulawesi Tengah dan Maluku Utara mencapai salah satu yang tertinggi di dunia, dengan pertumbuhan PDRB riil industri pengolahan rata-rata melesat di atas 15-20% YoY.",
     "provinces": [
       "Sulawesi Tengah",
@@ -89,7 +94,8 @@
     "title": "Kawasan Ekonomi Khusus (KEK) Pariwisata dan Kesehatan Sanur Bali Tarik Investor Global",
     "category": "Pariwisata & Jasa",
     "date": "2026-03-30",
-    "source": "Dewan Nasional KEK",
+    "source": "Dewan Nasional Kawasan Ekonomi Khusus",
+    "url": "https://kek.go.id",
     "summary": "Investasi layanan kesehatan berstandar internasional dan perhotelan terpadu di KEK Sanur mengembalikan trajektori pertumbuhan PDRB Bali ke level pra-pandemi.",
     "provinces": [
       "Bali"
@@ -106,6 +112,7 @@
     "category": "Finansial & Jasa",
     "date": "2026-02-14",
     "source": "Pemerintah Provinsi DKI Jakarta",
+    "url": "https://bappeda.jakarta.go.id",
     "summary": "Meskipun fungsi ibu kota berpindah ke IKN, DKI Jakarta tetap menjadi magnet investasi sektor jasa keuangan, teknologi informasi, dan kantor pusat multinasional dengan PDRB nominal melebihi Rp 3.500 Triliun.",
     "provinces": [
       "DKI Jakarta"
@@ -122,6 +129,7 @@
     "category": "Hilirisasi Logam",
     "date": "2026-01-20",
     "source": "BKPM & Pemprov Jawa Timur",
+    "url": "https://dpmptsp.jatimprov.go.id",
     "summary": "Smelter temaga single-line terbesar di dunia di KEK JIIPE Gresik beroperasi penuh, meningkatkan nilai tambah konsentrat temaga dan emas secara domestik.",
     "provinces": [
       "Jawa Timur"

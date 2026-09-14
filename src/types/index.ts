@@ -54,16 +54,9 @@ export interface NewsItem {
   category: string;
   date: string;
   source: string;
+  url: string;
   summary: string;
   provinces: string[];
   sectors: string[];
   impact: string;
-}
-
-export interface FilterState {
-  selectedProvince: string;
-  startYear: number;
-  endYear: number;
-  selectedRegion: string;
-  selectedQuarter: string;
 }

@@ -36,14 +36,14 @@ export default function DualAxisChart({
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-slate-900 border border-slate-700 p-4 rounded-xl shadow-xl text-xs space-y-1.5 z-50">
-          <p className="font-bold text-slate-200 border-b border-slate-700 pb-1">{label}</p>
+        <div className="bg-white border border-slate-200 p-3 rounded-xl shadow-xl text-xs space-y-1.5 z-50">
+          <p className="font-bold text-slate-800 border-b border-slate-100 pb-1">{label}</p>
           {payload.map((entry: any, index: number) => (
             <div key={`item-${index}`} className="flex items-center justify-between gap-4">
-              <span style={{ color: entry.color }} className="font-medium">
+              <span style={{ color: entry.color }} className="font-semibold">
                 {entry.name}:
               </span>
-              <span className="font-bold text-white">
+              <span className="font-bold text-slate-900">
                 {entry.name.includes("Rasio")
                   ? `${entry.value}%`
                   : formatRupiah(entry.value)}
@@ -57,22 +57,22 @@ export default function DualAxisChart({
   };
 
   return (
-    <div className="w-full bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 shadow-xl">
+    <div className="w-full bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
         <div>
-          <h3 className="font-bold text-base text-white">{title}</h3>
-          <p className="text-xs text-slate-400">
-            Batang: Realisasi Investasi BKPM &bull; Garis: Capaian PDRB BPS
+          <h3 className="font-bold text-base text-[#0f172a]">{title}</h3>
+          <p className="text-xs text-slate-500 font-medium">
+            Batang Biru: Realisasi Investasi (BKPM) &bull; Garis Hijau: Capaian PDRB (BPS)
           </p>
         </div>
-        <div className="flex items-center gap-4 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-sm bg-blue-500 inline-block" />
-            <span className="text-slate-300">Investasi (Sumbu Kiri)</span>
+        <div className="flex items-center gap-4 text-xs font-semibold">
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-sm bg-blue-700 inline-block" />
+            <span className="text-slate-700">Investasi (Sumbu Kiri)</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-emerald-400 inline-block" />
-            <span className="text-slate-300">{pdrbLabel} (Sumbu Kanan)</span>
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-full bg-emerald-600 inline-block" />
+            <span className="text-slate-700">{pdrbLabel} (Sumbu Kanan)</span>
           </div>
         </div>
       </div>
@@ -80,10 +80,10 @@ export default function DualAxisChart({
       <div className="h-80 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data} margin={{ top: 10, right: 20, left: 10, bottom: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#334155" opacity={0.5} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
             <XAxis
               dataKey="periode"
-              stroke="#94a3b8"
+              stroke="#64748b"
               fontSize={11}
               tickLine={false}
               angle={-45}
@@ -93,7 +93,7 @@ export default function DualAxisChart({
             {/* Left Y Axis for Investasi */}
             <YAxis
               yAxisId="left"
-              stroke="#60a5fa"
+              stroke="#1d4ed8"
               fontSize={11}
               tickLine={false}
               tickFormatter={(val) => formatRupiah(val)}
@@ -102,7 +102,7 @@ export default function DualAxisChart({
             <YAxis
               yAxisId="right"
               orientation="right"
-              stroke="#34d399"
+              stroke="#059669"
               fontSize={11}
               tickLine={false}
               tickFormatter={(val) => formatRupiah(val)}
@@ -113,7 +113,7 @@ export default function DualAxisChart({
               yAxisId="left"
               dataKey="investasi_total_milyar"
               name="Realisasi Investasi"
-              fill="#3b82f6"
+              fill="#1e40af"
               radius={[4, 4, 0, 0]}
               maxBarSize={28}
             />
@@ -122,9 +122,9 @@ export default function DualAxisChart({
               type="monotone"
               dataKey={pdrbKey}
               name={pdrbLabel}
-              stroke="#10b981"
+              stroke="#059669"
               strokeWidth={3}
-              dot={{ r: 3, fill: "#10b981" }}
+              dot={{ r: 3, fill: "#059669" }}
               activeDot={{ r: 6 }}
             />
           </ComposedChart>

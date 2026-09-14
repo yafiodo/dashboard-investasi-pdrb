@@ -3,70 +3,65 @@
 import { useState, useMemo } from "react";
 import mergedDataRaw from "@/data/merged_investasi_pdrb.json";
 import provinceProfilesRaw from "@/data/province_profiles.json";
+import riruDataRaw from "@/data/riru_readiness_data.json";
 import { MergedRecord, ProvinceProfile } from "@/types";
-import { formatRupiah, calculateCorrelation } from "@/lib/dataProcessor";
+import { formatRupiah } from "@/lib/dataProcessor";
 import DualAxisChart from "@/components/DualAxisChart";
-import ScatterQuadrant from "@/components/ScatterQuadrant";
-import { 
-  GitCompare
-} from "lucide-react";
+import RIRUMatrix from "@/components/RIRUMatrix";
+import RIRURadarChart from "@/components/RIRURadarChart";
+import { MapPin, Calendar, Award, CheckCircle2, TrendingUp, DollarSign, Activity, Factory, Globe2 } from "lucide-react";
 
-export default function KomparasiPage() {
+export default function RegionalPage() {
   const mergedData = mergedDataRaw as MergedRecord[];
   const provinces = provinceProfilesRaw as ProvinceProfile[];
+  const riruProvinces = riruDataRaw.provinces;
 
-  const [provinceA, setProvinceA] = useState<string>("Sulawesi Tengah");
-  const [provinceB, setProvinceB] = useState<string>("Jawa Barat");
-  const [pdrbBasis, setPdrbBasis] = useState<"adhb" | "adhk">("adhb");
+  const [selectedProvince, setSelectedProvince] = useState<string>("Jawa Timur");
+  const pdrbBasis = "adhb";
+  const [startYear, setStartYear] = useState<number>(2015);
+  const [endYear, setEndYear] = useState<number>(2026);
 
-  const provList = useMemo(() => provinces.map((p) => p.provinsi), [provinces]);
+  const yearsList = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
+  const provList = useMemo(() => riruProvinces.map((p) => p.provinsi), [riruProvinces]);
 
-  const dataA = useMemo(() => {
-    return mergedData.filter((d) => d.provinsi === provinceA);
-  }, [mergedData, provinceA]);
+  const provData = useMemo(() => {
+    return mergedData.filter((d) => d.provinsi === selectedProvince && d.tahun >= startYear && d.tahun <= endYear);
+  }, [mergedData, selectedProvince, startYear, endYear]);
 
-  const dataB = useMemo(() => {
-    return mergedData.filter((d) => d.provinsi === provinceB);
-  }, [mergedData, provinceB]);
+  const profile = provinces.find((p) => p.provinsi === selectedProvince);
+  const riru = riruProvinces.find((p) => p.provinsi === selectedProvince);
 
-  const profileA = provinces.find((p) => p.provinsi === provinceA);
-  const profileB = provinces.find((p) => p.provinsi === provinceB);
-
-  // Correlation Investasi vs PDRB
-  const corrA = useMemo(() => {
-    const inv = dataA.map((d) => d.investasi_total_milyar);
-    const pdrb = dataA.map((d) => (pdrbBasis === "adhb" ? d.pdrb_adhb_milyar : d.pdrb_adhk_milyar));
-    return calculateCorrelation(inv, pdrb);
-  }, [dataA, pdrbBasis]);
-
-  const corrB = useMemo(() => {
-    const inv = dataB.map((d) => d.investasi_total_milyar);
-    const pdrb = dataB.map((d) => (pdrbBasis === "adhb" ? d.pdrb_adhb_milyar : d.pdrb_adhk_milyar));
-    return calculateCorrelation(inv, pdrb);
-  }, [dataB, pdrbBasis]);
+  // Aggregates for selected range
+  const totalInv = useMemo(() => provData.reduce((acc, d) => acc + d.investasi_total_milyar, 0), [provData]);
+  const totalPma = useMemo(() => provData.reduce((acc, d) => acc + d.investasi_pma_milyar, 0), [provData]);
+  const totalPmdn = useMemo(() => provData.reduce((acc, d) => acc + d.investasi_pmdn_milyar, 0), [provData]);
+  const avgPdrbAdhb = useMemo(() => {
+    if (!provData.length) return 0;
+    return provData.reduce((acc, d) => acc + d.pdrb_adhb_milyar, 0) / provData.length;
+  }, [provData]);
 
   return (
     <div className="space-y-8">
-      {/* Header */}
+      {/* Page Title */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-3">
-          <GitCompare className="w-7 h-7 text-blue-400" />
-          Komparasi Mendalam: Realisasi Investasi vs Capaian PDRB
+        <h1 className="text-2xl sm:text-3xl font-black text-[#0f172a] flex items-center gap-3">
+          <MapPin className="w-7 h-7 text-blue-900" />
+          Dossier Regional: Profil Makroekonomi &amp; Kesiapan RIRU Daerah
         </h1>
-        <p className="text-xs sm:text-sm text-slate-400 mt-1">
-          Bandingkan trajektori pembentukan modal, korelasi pertumbuhan, serta efisiensi rasio investasi/PDRB antar provinsi.
+        <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
+          Eksplorasi mendalam kinerja investasi modal, PDRB, ekspor, efisiensi ICOR, serta kesiapan Regional Investment Relations Unit (RIRU) per provinsi periode 2015&ndash;2026.
         </p>
       </div>
 
-      {/* Selectors Bar */}
-      <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
+      {/* Single Province Controls Bar */}
+      <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-2 text-xs font-semibold text-blue-400">
-            <span>Provinsi A:</span>
+          <div className="flex items-center gap-2 text-xs font-bold text-blue-950">
+            <span>Pilih Provinsi:</span>
             <select
-              value={provinceA}
-              onChange={(e) => setProvinceA(e.target.value)}
-              className="bg-slate-800 text-white rounded-lg px-3 py-1.5 border border-slate-700 text-xs font-medium focus:border-blue-500"
+              value={selectedProvince}
+              onChange={(e) => setSelectedProvince(e.target.value)}
+              className="bg-slate-50 text-slate-900 rounded-xl px-3.5 py-2 border border-slate-300 text-xs font-bold focus:border-blue-700 outline-none"
             >
               {provList.map((p) => (
                 <option key={p} value={p}>{p}</option>
@@ -74,120 +69,121 @@ export default function KomparasiPage() {
             </select>
           </div>
 
-          <span className="text-slate-600 font-bold text-xs">&times; vs &times;</span>
-
-          <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400">
-            <span>Provinsi B:</span>
+          {/* Range Filter */}
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-600 border-l border-slate-200 pl-4">
+            <Calendar className="w-4 h-4 text-amber-600" />
+            <span>Periode:</span>
             <select
-              value={provinceB}
-              onChange={(e) => setProvinceB(e.target.value)}
-              className="bg-slate-800 text-white rounded-lg px-3 py-1.5 border border-slate-700 text-xs font-medium focus:border-emerald-500"
+              value={startYear}
+              onChange={(e) => setStartYear(Number(e.target.value))}
+              className="bg-slate-50 text-slate-900 rounded-lg px-2 py-1 border border-slate-300 text-xs font-bold"
             >
-              {provList.map((p) => (
-                <option key={p} value={p}>{p}</option>
+              {yearsList.map((y) => (
+                <option key={y} value={y}>{y}</option>
+              ))}
+            </select>
+            <span>s.d.</span>
+            <select
+              value={endYear}
+              onChange={(e) => setEndYear(Number(e.target.value))}
+              className="bg-slate-50 text-slate-900 rounded-lg px-2 py-1 border border-slate-300 text-xs font-bold"
+            >
+              {yearsList.filter((y) => y >= startYear).map((y) => (
+                <option key={y} value={y}>{y}</option>
               ))}
             </select>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-slate-400">
-          <span>Basis Harga PDRB:</span>
-          <div className="flex p-1 bg-slate-800 rounded-lg border border-slate-700">
-            <button
-              onClick={() => setPdrbBasis("adhb")}
-              className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${
-                pdrbBasis === "adhb" ? "bg-blue-600 text-white" : "text-slate-400 hover:text-white"
-              }`}
-            >
-              Harga Berlaku (ADHB)
-            </button>
-            <button
-              onClick={() => setPdrbBasis("adhk")}
-              className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${
-                pdrbBasis === "adhk" ? "bg-blue-600 text-white" : "text-slate-400 hover:text-white"
-              }`}
-            >
-              Harga Konstan 2010 (ADHK)
-            </button>
-          </div>
-        </div>
+
       </div>
 
-      {/* Comparative Metric Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Province A Card */}
-        <div className="p-5 rounded-2xl bg-gradient-to-b from-blue-900/20 to-slate-900/80 border border-blue-500/30 space-y-4">
-          <div className="flex justify-between items-center">
-            <h3 className="font-extrabold text-lg text-white text-blue-300">{provinceA}</h3>
-            <span className="px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/30">
-              Rank #{profileA?.rank_investasi}
-            </span>
+      {/* Hero Province Dossier Banner */}
+      {riru && (
+        <div className="p-6 rounded-2xl bg-gradient-to-r from-[#0b192e] via-blue-950 to-slate-900 text-white shadow-lg space-y-4 border border-blue-900/60">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+            <div>
+              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+                Profil Daerah &bull; Wilayah Pulau {riru.pulau}
+              </span>
+              <h2 className="text-3xl font-black text-white mt-1 flex items-center gap-3">
+                {selectedProvince}
+                <span className="text-xs px-3 py-1 rounded-full bg-blue-600 text-white font-bold">
+                  Peringkat #{riru.rank} Kesiapan RIRU
+                </span>
+                <span className="text-xs px-3 py-1 rounded-full bg-amber-500 text-slate-950 font-black">
+                  Skor RIRU: {riru.riru_score}/100
+                </span>
+              </h2>
+            </div>
+            <div className="text-right">
+              <span className="text-xs text-slate-400 font-semibold">Klasifikasi Matriks Kesiapan:</span>
+              <p className="text-base font-extrabold text-amber-300">{riru.kuadran}</p>
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-3 text-xs">
-            <div className="p-3 bg-slate-800/60 rounded-xl">
-              <span className="text-slate-400">Total Investasi Kumulatif:</span>
-              <p className="text-base font-bold text-blue-400 mt-1">{formatRupiah(profileA?.total_investasi_kumulatif_milyar || 0)}</p>
+
+          {/* 6 Key Macro Indicators Cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs pt-1">
+            <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700">
+              <span className="text-slate-400 font-medium">1. Investasi Terpilih:</span>
+              <p className="font-extrabold text-white text-base mt-1">{formatRupiah(totalInv)}</p>
+              <span className="text-[10px] text-blue-400">PMA: {totalInv > 0 ? Math.round((totalPma/totalInv)*100) : 0}% | PMDN: {totalInv > 0 ? Math.round((totalPmdn/totalInv)*100) : 0}%</span>
             </div>
-            <div className="p-3 bg-slate-800/60 rounded-xl">
-              <span className="text-slate-400">PDRB Nominal Terkini:</span>
-              <p className="text-base font-bold text-emerald-400 mt-1">{formatRupiah(profileA?.latest_pdrb_adhb_milyar || 0)}</p>
+
+            <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700">
+              <span className="text-slate-400 font-medium">2. Rata-rata PDRB:</span>
+              <p className="font-extrabold text-white text-base mt-1">{formatRupiah(avgPdrbAdhb * 4)}/th</p>
+              <span className="text-[10px] text-emerald-400">Harga Berlaku (ADHB)</span>
             </div>
-            <div className="p-3 bg-slate-800/60 rounded-xl">
-              <span className="text-slate-400">Rata-rata Rasio Inv/PDRB:</span>
-              <p className="text-base font-bold text-amber-400 mt-1">{profileA?.avg_rasio_investasi_pdrb}%</p>
+
+            <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700">
+              <span className="text-slate-400 font-medium">3. Nilai Ekspor:</span>
+              <p className="font-extrabold text-white text-base mt-1">${riru.avg_ekspor_tahunan_usd_juta} Jt/th</p>
+              <span className="text-[10px] text-amber-400">Daya saing pasar global</span>
             </div>
-            <div className="p-3 bg-slate-800/60 rounded-xl">
-              <span className="text-slate-400">Korelasi Investasi &times; PDRB:</span>
-              <p className="text-base font-bold text-purple-400 mt-1">r = {corrA}</p>
+
+            <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700">
+              <span className="text-slate-400 font-medium">4. Kesempatan Kerja:</span>
+              <p className="font-extrabold text-white text-base mt-1">{riru.tkk_pct}% (TKK)</p>
+              <span className="text-[10px] text-purple-400">TPT: {riru.tpt_pct}%</span>
+            </div>
+
+            <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700">
+              <span className="text-slate-400 font-medium">5. Efisiensi ICOR:</span>
+              <p className="font-extrabold text-white text-base mt-1">{riru.avg_icor}</p>
+              <span className="text-[10px] text-cyan-400">{riru.avg_icor <= 6.0 ? "Sangat Efisien" : "Capital-Intensive"}</span>
+            </div>
+
+            <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700">
+              <span className="text-slate-400 font-medium">6. Sektor Dominan:</span>
+              <p className="font-extrabold text-white text-sm mt-1 truncate">{riru.sektor_dominan}</p>
+              <span className="text-[10px] text-rose-400">Pangsa: {riru.porsi_sektor_dominan_pct}%</span>
+            </div>
+          </div>
+
+          {/* Strategic RIRU Policy Recommendation */}
+          <div className="p-3.5 bg-blue-950/80 rounded-xl border border-blue-800/60 text-xs flex items-start gap-2.5">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <div>
+              <strong className="text-amber-300">Rekomendasi Kebijakan RIRU untuk {selectedProvince}:</strong>{" "}
+              <span className="text-slate-200">{riru.rekomendasi_riru}</span>
             </div>
           </div>
         </div>
+      )}
 
-        {/* Province B Card */}
-        <div className="p-5 rounded-2xl bg-gradient-to-b from-emerald-900/20 to-slate-900/80 border border-emerald-500/30 space-y-4">
-          <div className="flex justify-between items-center">
-            <h3 className="font-extrabold text-lg text-white text-emerald-300">{provinceB}</h3>
-            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/30">
-              Rank #{profileB?.rank_investasi}
-            </span>
-          </div>
-          <div className="grid grid-cols-2 gap-3 text-xs">
-            <div className="p-3 bg-slate-800/60 rounded-xl">
-              <span className="text-slate-400">Total Investasi Kumulatif:</span>
-              <p className="text-base font-bold text-blue-400 mt-1">{formatRupiah(profileB?.total_investasi_kumulatif_milyar || 0)}</p>
-            </div>
-            <div className="p-3 bg-slate-800/60 rounded-xl">
-              <span className="text-slate-400">PDRB Nominal Terkini:</span>
-              <p className="text-base font-bold text-emerald-400 mt-1">{formatRupiah(profileB?.latest_pdrb_adhb_milyar || 0)}</p>
-            </div>
-            <div className="p-3 bg-slate-800/60 rounded-xl">
-              <span className="text-slate-400">Rata-rata Rasio Inv/PDRB:</span>
-              <p className="text-base font-bold text-amber-400 mt-1">{profileB?.avg_rasio_investasi_pdrb}%</p>
-            </div>
-            <div className="p-3 bg-slate-800/60 rounded-xl">
-              <span className="text-slate-400">Korelasi Investasi &times; PDRB:</span>
-              <p className="text-base font-bold text-purple-400 mt-1">r = {corrB}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Dual Charts */}
+      {/* Radar Chart & Time Series Side-by-Side */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <RIRURadarChart province={selectedProvince} />
         <DualAxisChart
-          data={dataA}
-          title={`Tren ${provinceA} (Investasi vs PDRB)`}
-          pdrbType={pdrbBasis}
-        />
-        <DualAxisChart
-          data={dataB}
-          title={`Tren ${provinceB} (Investasi vs PDRB)`}
+          data={provData}
+          title={`Dinamika Investasi vs PDRB: ${selectedProvince}`}
           pdrbType={pdrbBasis}
         />
       </div>
 
-      {/* Scatter Quadrant Component */}
-      <ScatterQuadrant provinces={provinces} />
+      {/* National 4 Quadrants Strategic RIRU Matrix */}
+      <RIRUMatrix />
     </div>
   );
 }
