@@ -9,6 +9,7 @@ export default function PetaPage() {
 
   return (
     <div className="space-y-8">
+      {/* Heading: Left-aligned, no badge pill */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-black text-[#0f172a] flex items-center gap-3">
           <Map className="w-7 h-7 text-blue-900" />

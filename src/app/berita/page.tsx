@@ -58,6 +58,7 @@ export default function BeritaPage() {
 
   return (
     <div className="space-y-8">
+      {/* Heading: Left-aligned, no badge pill */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-black text-[#0f172a] flex items-center gap-3">
@@ -72,7 +73,7 @@ export default function BeritaPage() {
         <button
           onClick={handleSyncNews}
           disabled={isSyncing}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0f172a] hover:bg-blue-900 text-white text-xs font-bold transition-all shadow-sm self-start"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0f172a] hover:bg-blue-900 text-white text-xs font-bold transition-all shadow-sm self-start sm:self-auto shrink-0"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? "animate-spin text-amber-400" : ""}`} />
           {isSyncing ? "Menyinkronkan Berita..." : "Perbarui Berita (Sync News)"}

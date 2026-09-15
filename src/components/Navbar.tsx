@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
@@ -11,29 +11,52 @@ import {
   Newspaper, 
   Table, 
   BarChart3,
-  Activity,
   RefreshCw,
   CheckCircle2,
-  Database,
-  Camera
+  Camera,
+  Menu,
+  X,
+  ChevronRight
 } from "lucide-react";
+import RIRULogo from "@/components/RIRULogo";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCapturing, setIsCapturing] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
-    { name: "Overview", href: "/", icon: BarChart3 },
-    { name: "Regional", href: "/komparasi", icon: TrendingUp },
-    { name: "Sektoral", href: "/sektoral", icon: Layers },
-    { name: "Peta Spasial", href: "/peta", icon: Map },
-    { name: "AI Analyst", href: "/ai-analyst", icon: Bot },
-    { name: "Berita", href: "/berita", icon: Newspaper },
-    { name: "Data Explorer", href: "/data-explorer", icon: Table },
+    { name: "Overview", href: "/", icon: BarChart3, desc: "Dashboard Utama & Tren Makro" },
+    { name: "Regional", href: "/komparasi", icon: TrendingUp, desc: "Profil 38 Provinsi & Kesiapan RIRU" },
+    { name: "Sektoral", href: "/sektoral", icon: Layers, desc: "Komposisi 23 Sektor BKPM & Hilirisasi" },
+    { name: "Peta Spasial", href: "/peta", icon: Map, desc: "Peta Satelit Sebaran Ekonomi Daerah" },
+    { name: "AI Analyst", href: "/ai-analyst", icon: Bot, desc: "Asisten Cerdas Analisis Makroekonomi" },
+    { name: "Berita", href: "/berita", icon: Newspaper, desc: "Rilis Resmi BKPM, BPS, & Kebijakan" },
+    { name: "Data Explorer", href: "/data-explorer", icon: Table, desc: "Eksplorasi Granular & Ekspor CSV" },
   ];
 
-  const [isCapturing, setIsCapturing] = useState(false);
+  // Close menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    }
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   const handleCaptureScreen = async () => {
     if (isCapturing) return;
@@ -88,63 +111,113 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-[#0b192e] border-b border-slate-800 text-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        {/* Left: Brand Logo & Title */}
         <div className="flex items-center gap-3 flex-shrink-0">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-amber-600 to-amber-400 flex items-center justify-center shadow-md shadow-amber-500/20 flex-shrink-0">
-            <Activity className="w-5 h-5 text-white" />
-          </div>
+          <Link href="/" className="flex-shrink-0 hover:opacity-90 transition-opacity">
+            <RIRULogo className="w-10 h-10" />
+          </Link>
           <div className="flex-shrink-0">
-            <Link href="/" className="font-black text-lg sm:text-xl tracking-wide text-white flex items-center gap-1 leading-none">
+            <Link href="/" className="font-black text-lg sm:text-xl tracking-wide text-white flex items-center gap-1 leading-none hover:text-amber-300 transition-colors">
               <span>SI-RIRU</span>
             </Link>
             <p className="text-[10px] text-slate-300 font-medium whitespace-nowrap hidden sm:block tracking-tight mt-0.5">
-              Sistem Informasi Regional Investment Relations Unit
+              Sistem Informasi Regional Investor Relations Unit
             </p>
           </div>
         </div>
 
-        <nav className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all ${
-                  isActive
-                    ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20 font-bold"
-                    : "text-slate-200 hover:text-white hover:bg-slate-800/80"
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                {item.name}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Sync Data Button & Screen Capture */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Right side: Action buttons & Hamburger Menu (Garis 3) */}
+        <div className="flex items-center gap-2 sm:gap-3" ref={menuRef}>
+          {/* Sync Data Button */}
           <button
             onClick={handleSync}
             disabled={isSyncing}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/30 text-xs font-semibold transition-all shadow-sm active:scale-95"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-amber-400 border border-amber-500/30 text-xs font-semibold transition-all shadow-sm active:scale-95"
             title="Klik untuk memperbarui & sinkronkan data BKPM dan BPS"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? "animate-spin text-amber-300" : ""}`} />
             <span className="hidden sm:inline">{isSyncing ? "Menyinkronkan..." : "Update Data"}</span>
           </button>
 
-          {/* Screen Capture button replacing 38 Provinsi */}
+          {/* Screen Capture button */}
           <button
             onClick={handleCaptureScreen}
             disabled={isCapturing}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 hover:border-slate-600 text-[10px] font-semibold transition-all shadow-sm active:scale-95 cursor-pointer"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 hover:border-slate-600 text-[11px] font-semibold transition-all shadow-sm active:scale-95 cursor-pointer"
             title="Ambil tangkapan layar (Screen Capture) halaman dashboard"
           >
             <Camera className={`w-3.5 h-3.5 ${isCapturing ? "animate-pulse text-amber-400" : "text-amber-400/90"}`} />
-            <span className="tracking-tight">{isCapturing ? "Menyimpan..." : "Screen Capture"}</span>
+            <span className="tracking-tight hidden sm:inline">{isCapturing ? "Menyimpan..." : "Screen Capture"}</span>
           </button>
+
+          {/* Garis 3 (Hamburger Menu Button) */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all shadow-sm active:scale-95 cursor-pointer ${
+              isMenuOpen
+                ? "bg-amber-500 text-slate-950 border-amber-400 shadow-md shadow-amber-500/20"
+                : "bg-slate-800/90 hover:bg-slate-700 text-slate-100 hover:text-white border-slate-700"
+            }`}
+            title="Buka Navigasi Halaman (Garis 3)"
+            aria-label="Menu Navigasi"
+          >
+            {isMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4 text-amber-400" />}
+            <span className="font-bold">Menu</span>
+          </button>
+
+          {/* Dropdown Menu Panel from Garis 3 */}
+          {isMenuOpen && (
+            <div 
+              style={{ backgroundColor: "rgba(11, 25, 46, 0.88)" }}
+              className="absolute right-4 sm:right-6 top-16 z-50 w-72 sm:w-80 backdrop-blur-xl border border-slate-700/80 rounded-2xl shadow-2xl p-2.5 space-y-1 animate-in fade-in slide-in-from-top-2 ring-1 ring-black/30"
+            >
+              <div className="px-3 py-2 border-b border-slate-800/80 flex items-center justify-between">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                  Navigasi SI-RIRU
+                </span>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors"
+                  title="Tutup Menu"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+              <div className="py-1 space-y-1">
+                {navItems.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs transition-all group ${
+                        isActive
+                          ? "bg-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/25 border border-amber-400"
+                          : "hover:bg-slate-800/70 font-medium"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-lg shrink-0 ${isActive ? "bg-slate-950/20 text-slate-950" : "bg-[#081324] text-amber-400 border border-slate-700/50 group-hover:bg-slate-700"}`}>
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className={`text-xs ${isActive ? "text-slate-950 font-black" : "text-slate-300 font-bold group-hover:text-amber-300 transition-colors"}`}>
+                            {item.name}
+                          </div>
+                          <div className={`text-[10px] leading-tight mt-0.5 ${isActive ? "text-slate-900 font-semibold" : "text-slate-400 group-hover:text-slate-300"}`}>
+                            {item.desc}
+                          </div>
+                        </div>
+                      </div>
+                      <ChevronRight className={`w-3.5 h-3.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all ${isActive ? "text-slate-950" : "text-slate-400"}`} />
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -155,28 +228,6 @@ export default function Navbar() {
           <span>{syncStatus}</span>
         </div>
       )}
-
-      {/* Mobile nav */}
-      <div className="lg:hidden flex items-center justify-start overflow-x-auto px-4 py-2 gap-1 border-t border-slate-800 bg-[#081324]">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = pathname === item.href;
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
-                isActive
-                  ? "bg-amber-500 text-slate-950 font-bold"
-                  : "text-slate-300 hover:text-white hover:bg-slate-800"
-              }`}
-            >
-              <Icon className="w-3.5 h-3.5" />
-              {item.name}
-            </Link>
-          );
-        })}
-      </div>
     </header>
   );
 }

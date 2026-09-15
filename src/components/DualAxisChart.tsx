@@ -25,6 +25,18 @@ interface DualAxisChartProps {
   pdrbType?: "adhb" | "adhk";
 }
 
+function formatAxisRupiah(valMilyar: number): string {
+  if (!valMilyar || isNaN(valMilyar) || valMilyar === 0) return "Rp 0";
+  if (valMilyar >= 1000) {
+    const triliun = valMilyar / 1000;
+    const formatted = triliun % 1 === 0 
+      ? triliun.toLocaleString("id-ID")
+      : triliun.toLocaleString("id-ID", { maximumFractionDigits: 1 });
+    return `Rp ${formatted} T`;
+  }
+  return `Rp ${Math.round(valMilyar).toLocaleString("id-ID")} M`;
+}
+
 export default function DualAxisChart({
   data,
   title = "Tren Realisasi Investasi vs PDRB",
@@ -79,7 +91,7 @@ export default function DualAxisChart({
 
       <div className="h-80 w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart data={data} margin={{ top: 10, right: 20, left: 10, bottom: 20 }}>
+          <ComposedChart data={data} margin={{ top: 10, right: 15, left: 10, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
             <XAxis
               dataKey="periode"
@@ -95,8 +107,9 @@ export default function DualAxisChart({
               yAxisId="left"
               stroke="#1d4ed8"
               fontSize={11}
+              width={85}
               tickLine={false}
-              tickFormatter={(val) => formatRupiah(val)}
+              tickFormatter={formatAxisRupiah}
             />
             {/* Right Y Axis for PDRB */}
             <YAxis
@@ -104,8 +117,9 @@ export default function DualAxisChart({
               orientation="right"
               stroke="#059669"
               fontSize={11}
+              width={90}
               tickLine={false}
-              tickFormatter={(val) => formatRupiah(val)}
+              tickFormatter={formatAxisRupiah}
             />
             <Tooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: 12, paddingTop: 10 }} />

@@ -401,11 +401,25 @@ export default function IndonesiaMap({ onSelectProvince }: IndonesiaMapProps) {
               </div>
             </div>
 
-            <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-              <span className="text-slate-400">6. Sektor Dominan:</span>
-              <p className="font-extrabold text-white text-sm mt-0.5 truncate">{activeProv.sektor_dominan}</p>
+            <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700 relative group cursor-pointer">
+              <div className="flex items-center justify-between text-slate-400 text-xs">
+                <span>6. Sektor Dominan:</span>
+                <span className="text-[10px] text-amber-400/80 group-hover:text-amber-300">Detail &rarr;</span>
+              </div>
+              <p 
+                className="font-extrabold text-white text-sm mt-0.5 truncate group-hover:text-amber-300 transition-colors"
+                title={activeProv.sektor_dominan}
+              >
+                {activeProv.sektor_dominan}
+              </p>
               <div className="w-full bg-slate-700 h-1.5 rounded-full mt-2 overflow-hidden">
                 <div className="bg-rose-500 h-full rounded-full" style={{ width: `${activeProv.scores.z_sec}%` }} />
+              </div>
+              {/* Hover popover */}
+              <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block z-50 p-2.5 bg-slate-950 text-white text-xs rounded-xl shadow-2xl border border-slate-700 max-w-xs pointer-events-none animate-in fade-in">
+                <div className="text-amber-400 text-[10px] font-bold uppercase">Sektor Dominan:</div>
+                <div className="text-white text-xs font-bold leading-snug">{activeProv.sektor_dominan}</div>
+                <div className="text-slate-400 text-[10px] mt-1">Porsi PDRB: {activeProv.porsi_sektor_dominan_pct}%</div>
               </div>
             </div>
           </div>

@@ -20,8 +20,8 @@ export default function DataExplorerPage() {
   const pageSize = 15;
 
   const provincesList = useMemo(() => {
-    const set = new Set(mergedData.map((d) => d.provinsi));
-    return ["Semua", ...Array.from(set).sort()];
+    const set = new Set(mergedData.map((d) => d.provinsi.trim()));
+    return ["Semua", ...Array.from(set).sort((a, b) => a.localeCompare(b, "id"))];
   }, [mergedData]);
 
   const yearsList = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
@@ -129,7 +129,7 @@ export default function DataExplorerPage() {
 
   return (
     <div className="space-y-6">
-      {/* Title & Export */}
+      {/* Title & Export Button on Right (Matching Image 5) */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-black text-[#0f172a] flex items-center gap-3">
@@ -143,7 +143,7 @@ export default function DataExplorerPage() {
 
         <button
           onClick={handleExportCSV}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold shadow-sm transition-all self-start"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold shadow-sm transition-all self-start sm:self-auto shrink-0"
         >
           <Download className="w-4 h-4" />
           Ekspor CSV ({filteredData.length} baris)
@@ -260,10 +260,10 @@ export default function DataExplorerPage() {
               <tr className="border-b border-slate-200 bg-slate-50 text-slate-700 font-bold">
                 <th className="py-3 px-3">Provinsi</th>
                 <th className="py-3 px-3">Periode</th>
-                <th className="py-3 px-3 text-right">Investasi Total</th>
-                <th className="py-3 px-3 text-right">PMA</th>
-                <th className="py-3 px-3 text-right">PMDN</th>
-                <th className="py-3 px-3 text-right">PDRB ADHB</th>
+                <th className="py-3 px-3 text-right">Investasi Total (Miliar Rp)</th>
+                <th className="py-3 px-3 text-right">PMA (Miliar Rp)</th>
+                <th className="py-3 px-3 text-right">PMDN (Miliar Rp)</th>
+                <th className="py-3 px-3 text-right">PDRB ADHB (Miliar Rp)</th>
                 <th className="py-3 px-3 text-right">Rasio Inv/PDRB</th>
                 <th className="py-3 px-3 text-center">Skor RIRU</th>
                 <th className="py-3 px-3 text-center">Rank RIRU</th>
@@ -276,10 +276,18 @@ export default function DataExplorerPage() {
                   <tr key={`${d.provinsi}-${d.periode}-${idx}`} className="hover:bg-slate-50/80 transition-colors">
                     <td className="py-2.5 px-3 font-bold text-[#0f172a]">{d.provinsi}</td>
                     <td className="py-2.5 px-3 text-slate-600 font-medium">{d.periode}</td>
-                    <td className="py-2.5 px-3 text-right font-extrabold text-blue-900">{formatRupiah(d.investasi_total_milyar)}</td>
-                    <td className="py-2.5 px-3 text-right text-slate-600">{formatRupiah(d.investasi_pma_milyar)}</td>
-                    <td className="py-2.5 px-3 text-right text-slate-600">{formatRupiah(d.investasi_pmdn_milyar)}</td>
-                    <td className="py-2.5 px-3 text-right font-semibold text-emerald-800">{formatRupiah(d.pdrb_adhb_milyar)}</td>
+                    <td className="py-2.5 px-3 text-right font-extrabold text-blue-900">
+                      {d.investasi_total_milyar.toLocaleString("id-ID", { maximumFractionDigits: 1 })}
+                    </td>
+                    <td className="py-2.5 px-3 text-right text-slate-700 font-medium">
+                      {d.investasi_pma_milyar.toLocaleString("id-ID", { maximumFractionDigits: 1 })}
+                    </td>
+                    <td className="py-2.5 px-3 text-right text-slate-700 font-medium">
+                      {d.investasi_pmdn_milyar.toLocaleString("id-ID", { maximumFractionDigits: 1 })}
+                    </td>
+                    <td className="py-2.5 px-3 text-right font-semibold text-emerald-800">
+                      {d.pdrb_adhb_milyar.toLocaleString("id-ID", { maximumFractionDigits: 1 })}
+                    </td>
                     <td className="py-2.5 px-3 text-right font-bold text-amber-700">{d.rasio_investasi_pdrb_persen}%</td>
                     <td className="py-2.5 px-3 text-center font-black text-blue-900">
                       <span className="px-2 py-0.5 rounded-full bg-blue-50 border border-blue-200">

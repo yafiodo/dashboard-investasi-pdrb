@@ -129,7 +129,7 @@ export default function HomePage() {
             Executive Intelligence Dashboard
           </div>
           <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-white">
-            Monitoring Komparasi Realisasi Investasi &amp; PDRB Provinsi
+            Monitoring Indikator Ekonomi Regional
           </h1>
           <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
             Menyelaraskan data realisasi investasi Kementerian Investasi/BKPM (PMA &amp; PMDN) dengan indikator capaian PDRB Badan Pusat Statistik (BPS) di 38 provinsi Indonesia (2015&ndash;2026).
@@ -308,16 +308,16 @@ export default function HomePage() {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs text-slate-700">
-              <thead className="bg-slate-100 text-slate-600 font-bold border-b border-slate-200">
+              <thead className="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
                 <tr>
                   <th className="py-3 px-3">Rank Inv</th>
                   <th className="py-3 px-3">Provinsi</th>
                   <th className="py-3 px-3">Wilayah</th>
-                  <th className="py-3 px-3">Total Investasi</th>
-                  <th className="py-3 px-3">PDRB Terkini</th>
-                  <th className="py-3 px-3">Rasio Inv/PDRB</th>
-                  <th className="py-3 px-3">Skor RIRU</th>
-                  <th className="py-3 px-3">Rank RIRU</th>
+                  <th className="py-3 px-3 text-right">Total Investasi (Triliun Rp)</th>
+                  <th className="py-3 px-3 text-right">PDRB Terkini (Triliun Rp)</th>
+                  <th className="py-3 px-3 text-right">Rasio Inv/PDRB</th>
+                  <th className="py-3 px-3 text-center">Skor RIRU</th>
+                  <th className="py-3 px-3 text-center">Rank RIRU</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -326,17 +326,25 @@ export default function HomePage() {
                   return (
                     <tr key={prov.provinsi} className="hover:bg-slate-50 transition-colors">
                       <td className="py-3 px-3 font-extrabold text-amber-600">#{prov.rank_investasi}</td>
-                      <td className="py-3 px-3 font-bold text-[#0f172a]">{prov.provinsi}</td>
-                      <td className="py-3 px-3 text-slate-500">{prov.region}</td>
-                      <td className="py-3 px-3 font-extrabold text-blue-800">{formatRupiah(prov.total_investasi_kumulatif_milyar)}</td>
-                      <td className="py-3 px-3 font-bold text-emerald-700">{formatRupiah(prov.latest_pdrb_adhb_milyar)}</td>
-                      <td className="py-3 px-3 font-black text-amber-700">{prov.avg_rasio_investasi_pdrb}%</td>
-                      <td className="py-3 px-3 font-extrabold text-blue-900">
+                      <td className="py-3 px-3 font-bold text-[#0f172a] whitespace-nowrap">{prov.provinsi}</td>
+                      <td className="py-3 px-3 text-slate-500 whitespace-nowrap">{prov.region}</td>
+                      <td className="py-3 px-3 text-right font-extrabold text-blue-900 whitespace-nowrap">
+                        {(prov.total_investasi_kumulatif_milyar / 1000).toLocaleString("id-ID", { minimumFractionDigits: 1, maximumFractionDigits: 2 })}
+                      </td>
+                      <td className="py-3 px-3 text-right font-bold text-emerald-800 whitespace-nowrap">
+                        {(prov.latest_pdrb_adhb_milyar / 1000).toLocaleString("id-ID", { minimumFractionDigits: 1, maximumFractionDigits: 2 })}
+                      </td>
+                      <td className="py-3 px-3 text-right font-black text-amber-700 whitespace-nowrap">
+                        {prov.avg_rasio_investasi_pdrb}%
+                      </td>
+                      <td className="py-3 px-3 text-center font-extrabold text-blue-900 whitespace-nowrap">
                         <span className="px-2 py-0.5 rounded-full bg-blue-50 border border-blue-200">
                           {riruMatch?.riru_score || "-"}/100
                         </span>
                       </td>
-                      <td className="py-3 px-3 font-bold text-emerald-700">#{riruMatch?.rank || "-"}</td>
+                      <td className="py-3 px-3 text-center font-bold text-emerald-700 whitespace-nowrap">
+                        #{riruMatch?.rank || "-"}
+                      </td>
                     </tr>
                   );
                 })}

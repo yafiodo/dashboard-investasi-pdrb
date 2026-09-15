@@ -13,7 +13,7 @@ import {
   Legend,
   CartesianGrid,
 } from "recharts";
-import { Layers, Factory, Filter, CheckCircle2, Sparkles, TrendingUp, DollarSign } from "lucide-react";
+import { Layers, Factory, Filter, CheckCircle2, Sparkles, TrendingUp, DollarSign, Table } from "lucide-react";
 
 export default function SektoralPage() {
   const [selectedSector, setSelectedSector] = useState<string>("all");
@@ -21,7 +21,9 @@ export default function SektoralPage() {
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
 
   const nationalSectors = sectorBreakdownRaw.national_sectors;
-  const allSectorsList = sectorBreakdownRaw.all_sectors_list;
+  const allSectorsList = useMemo(() => {
+    return [...sectorBreakdownRaw.all_sectors_list].sort((a: string, b: string) => a.localeCompare(b, "id"));
+  }, []);
 
   // Filtered sectors list
   const filteredSectors = useMemo(() => {
@@ -60,15 +62,33 @@ export default function SektoralPage() {
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
+      const item = payload[0]?.payload;
+      const fullName = item?.fullName || label;
       return (
-        <div className="bg-white border border-slate-200 p-3.5 rounded-xl shadow-xl text-xs space-y-1 z-50 max-w-sm">
-          <p className="font-extrabold text-slate-900 border-b border-slate-100 pb-1">{label}</p>
-          {payload.map((entry: any, index: number) => (
-            <div key={`s-${index}`} className="flex justify-between gap-4 text-[11px]">
-              <span style={{ color: entry.color }} className="font-semibold">{entry.name}:</span>
-              <strong className="text-slate-900">Rp {entry.value} Triliun</strong>
+        <div className="bg-slate-950 text-white border border-slate-700 p-4 rounded-xl shadow-2xl text-xs space-y-2 z-50 max-w-md animate-in fade-in">
+          <div className="border-b border-slate-800 pb-2">
+            <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">
+              {item?.kategori || "Sektor Investasi BKPM"}
+            </span>
+            <p className="font-black text-sm text-white leading-snug mt-0.5">
+              {fullName}
+            </p>
+          </div>
+          <div className="space-y-1.5 pt-0.5">
+            {payload.map((entry: any, index: number) => (
+              <div key={`s-${index}`} className="flex items-center justify-between gap-4 text-xs">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: entry.color }} />
+                  <span className="text-slate-300 font-medium">{entry.name}:</span>
+                </div>
+                <strong className="text-white font-black">Rp {entry.value} Triliun</strong>
+              </div>
+            ))}
+            <div className="flex items-center justify-between gap-4 text-xs pt-1.5 border-t border-slate-800 text-amber-400 font-black">
+              <span>Total Kumulatif:</span>
+              <span>Rp {item?.total} Triliun</span>
             </div>
-          ))}
+          </div>
         </div>
       );
     }
@@ -77,11 +97,11 @@ export default function SektoralPage() {
 
   return (
     <div className="space-y-8">
-      {/* Title & Description */}
+      {/* Heading: Left-aligned, no badge pill */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-black text-[#0f172a] flex items-center gap-3">
           <Layers className="w-7 h-7 text-blue-900" />
-          Analisis Sektoral: Realisasi Investasi (BKPM) &amp; Lapangan Usaha (BPS)
+          Analisis Sektoral: Realisasi Investasi &amp; PDRB
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
           Eksplorasi mendalam 23 sektor investasi BKPM dengan filter tipe PMA/PMDN, integrasi hilirisasi, dan perbandingan lapangan usaha PDRB BPS periode 2015&ndash;2026.
@@ -251,32 +271,38 @@ export default function SektoralPage() {
         </div>
       </div>
 
-      {/* Full 23 Sectors Data Table */}
+      {/* Full 23 Sectors Data Table: Polished layout with search and sticky headers */}
       <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
-        <div className="flex items-center justify-between">
-          <h4 className="font-black text-base text-[#0f172a]">
-            Tabel Lengkap 23 Sektor Investasi BKPM (Kumulatif 2015&ndash;2026)
-          </h4>
-          <span className="text-xs font-semibold text-slate-500">
-            Total {filteredSectors.length} sektor ditampilkan
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+          <div>
+            <h4 className="font-black text-base text-[#0f172a] flex items-center gap-2">
+              <Table className="w-4 h-4 text-blue-900" />
+              Tabel Lengkap 23 Sektor Investasi BKPM (Kumulatif 2015&ndash;2026)
+            </h4>
+            <p className="text-xs text-slate-500 font-medium">
+              Rincian komparasi aliran modal asing (PMA), modal domestik (PMDN), dan prioritas hilirisasi
+            </p>
+          </div>
+          <span className="px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-bold text-slate-700 self-start sm:self-auto">
+            Total {filteredSectors.length} Sektor Ditampilkan
           </span>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto rounded-xl border border-slate-200">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="border-b border-slate-200 bg-slate-50 text-slate-700">
-                <th className="py-3 px-3 font-bold">#</th>
-                <th className="py-3 px-3 font-bold">Nama Sektor</th>
-                <th className="py-3 px-3 font-bold">Kelompok</th>
-                <th className="py-3 px-3 font-bold text-right">PMA (Triliun)</th>
-                <th className="py-3 px-3 font-bold text-right">PMDN (Triliun)</th>
-                <th className="py-3 px-3 font-bold text-right">Total Investasi</th>
-                <th className="py-3 px-3 font-bold text-right">Pangsa Nasional</th>
-                <th className="py-3 px-3 font-bold text-center">Status Hilirisasi</th>
+              <tr className="border-b border-slate-200 bg-slate-100/80 text-slate-800">
+                <th className="py-3.5 px-4 font-extrabold w-12 text-center">#</th>
+                <th className="py-3.5 px-4 font-extrabold min-w-[260px]">Nama Sektor</th>
+                <th className="py-3.5 px-4 font-extrabold min-w-[140px]">Kelompok Usaha</th>
+                <th className="py-3.5 px-4 font-extrabold text-right min-w-[120px]">PMA (Triliun Rp)</th>
+                <th className="py-3.5 px-4 font-extrabold text-right min-w-[120px]">PMDN (Triliun Rp)</th>
+                <th className="py-3.5 px-4 font-extrabold text-right min-w-[140px]">Total Investasi (Triliun Rp)</th>
+                <th className="py-3.5 px-4 font-extrabold text-right min-w-[100px]">Pangsa</th>
+                <th className="py-3.5 px-4 font-extrabold text-center min-w-[140px]">Status Program</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-100 bg-white">
               {filteredSectors.map((s: any, idx: number) => {
                 const isHilirisasi =
                   s.sektor.includes("Logam") ||
@@ -286,26 +312,36 @@ export default function SektoralPage() {
                   s.sektor.includes("Kendaraan");
 
                 return (
-                  <tr key={s.sektor} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="py-3 px-3 font-bold text-slate-500">{idx + 1}</td>
-                    <td className="py-3 px-3 font-bold text-[#0f172a]">{s.sektor}</td>
-                    <td className="py-3 px-3 text-slate-600">
-                      <span className="px-2 py-0.5 rounded-full bg-slate-100 text-[10px] font-semibold">
+                  <tr key={s.sektor} className="hover:bg-blue-50/40 transition-colors">
+                    <td className="py-3.5 px-4 font-bold text-slate-400 text-center">{idx + 1}</td>
+                    <td className="py-3.5 px-4">
+                      <div className="font-extrabold text-slate-900 text-xs leading-snug">{s.sektor}</div>
+                    </td>
+                    <td className="py-3.5 px-4 text-slate-700">
+                      <span className="px-2.5 py-1 rounded-md bg-slate-100 text-[11px] font-semibold text-slate-700 border border-slate-200">
                         {s.sektor_utama}
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-right font-medium text-blue-900">Rp {s.pma_triliun} T</td>
-                    <td className="py-3 px-3 text-right font-medium text-amber-700">Rp {s.pmdn_triliun} T</td>
-                    <td className="py-3 px-3 text-right font-black text-slate-900">Rp {s.total_triliun} T</td>
-                    <td className="py-3 px-3 text-right font-bold text-emerald-700">{s.share_national_pct}%</td>
-                    <td className="py-3 px-3 text-center">
+                    <td className="py-3.5 px-4 text-right font-bold text-blue-900">
+                      {s.pma_triliun.toLocaleString("id-ID", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+                    </td>
+                    <td className="py-3.5 px-4 text-right font-bold text-amber-700">
+                      {s.pmdn_triliun.toLocaleString("id-ID", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+                    </td>
+                    <td className="py-3.5 px-4 text-right font-black text-slate-900 text-sm">
+                      {s.total_triliun.toLocaleString("id-ID", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+                    </td>
+                    <td className="py-3.5 px-4 text-right font-extrabold text-emerald-700">
+                      {s.share_national_pct}%
+                    </td>
+                    <td className="py-3.5 px-4 text-center">
                       {isHilirisasi ? (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200">
-                          <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Hilirisasi Prioritas
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-extrabold border border-emerald-300 shadow-2xs">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Hilirisasi Prioritas
                         </span>
                       ) : (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-medium">
-                          Reguler
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-[10px] font-medium border border-slate-200">
+                          Sektor Reguler
                         </span>
                       )}
                     </td>

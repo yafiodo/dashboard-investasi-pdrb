@@ -10,6 +10,7 @@ export default function AIAnalystPage() {
 
   return (
     <div className="space-y-8">
+      {/* Heading: Left-aligned, no badge pill */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-black text-[#0f172a] flex items-center gap-3">
           <Bot className="w-7 h-7 text-amber-600" />
@@ -43,6 +44,14 @@ export default function AIAnalystPage() {
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
                 <span className="font-bold text-amber-800">3. Efisiensi Investasi Jawa vs Luar Jawa</span>
                 <p className="text-[11px] text-slate-500 mt-0.5">Perbandingan rasio investasi/PDRB dan ICOR antara koridor barat dan timur.</p>
+              </div>
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span className="font-bold text-indigo-900">4. Kesiapan RIRU Kuadran I</span>
+                <p className="text-[11px] text-slate-500 mt-0.5">Strategi promosi modal dan pembiayaan hijau di Jatim, Jabar, DKI, Jateng &amp; Sumut.</p>
+              </div>
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span className="font-bold text-rose-800">5. Penyerapan Kerja &amp; Efisiensi ICOR</span>
+                <p className="text-[11px] text-slate-500 mt-0.5">Menyelaraskan investasi padat modal dengan Tingkat Kesempatan Kerja (TKK) daerah.</p>
               </div>
             </div>
           </div>

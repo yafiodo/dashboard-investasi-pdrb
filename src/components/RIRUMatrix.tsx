@@ -59,7 +59,7 @@ export default function RIRUMatrix() {
             <div>Ekspor: <strong className="text-slate-800">${data.avg_ekspor_tahunan_usd_juta} Jt/th</strong></div>
             <div>TKK: <strong className="text-slate-800">{data.tkk_pct}%</strong></div>
             <div>ICOR: <strong className="text-slate-800">{data.avg_icor}</strong></div>
-            <div>Sektor: <strong className="text-slate-800 truncate block">{data.sektor_dominan}</strong></div>
+            <div className="col-span-2">Sektor Dominan: <strong className="text-slate-900 block text-xs leading-snug">{data.sektor_dominan}</strong></div>
           </div>
           <div className="mt-2 pt-1.5 border-t border-slate-100 text-[10px] text-slate-500 italic">
             Klik titik untuk melihat analisis rekomendasi RIRU.
@@ -77,7 +77,7 @@ export default function RIRUMatrix() {
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-amber-600 uppercase tracking-wider mb-1">
             <Compass className="w-4 h-4" />
-            Matriks Strategis Kesiapan Daerah Menjadi RIRU (Regional Investment Relations Unit)
+            Matriks Strategis Kesiapan Daerah Menjadi RIRU (Regional Investor Relations Unit)
           </div>
           <h3 className="text-xl font-black text-[#0f172a]">
             Matriks 4 Kuadran Kesiapan RIRU (Kombinasi 6 Indikator Makroekonomi)
@@ -103,7 +103,7 @@ export default function RIRUMatrix() {
         <div className="p-5 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/40 border border-blue-100 text-slate-800 text-xs space-y-4">
           <div className="flex items-center gap-2 font-bold text-blue-900 text-sm">
             <Info className="w-4 h-4 text-blue-700" />
-            Metodologi &amp; Formulasi Indeks Kesiapan RIRU (Regional Investment Relations Unit)
+            Metodologi &amp; Formulasi Indeks Kesiapan RIRU (Regional Investor Relations Unit)
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -296,10 +296,24 @@ export default function RIRUMatrix() {
               <p className="font-extrabold text-white text-sm mt-0.5">{selectedProv.avg_icor}</p>
               <span className="text-[10px] text-cyan-400">Sub-skor: {selectedProv.scores.z_icor}</span>
             </div>
-            <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-              <span className="text-slate-400">Sektor Dominan:</span>
-              <p className="font-extrabold text-white text-sm mt-0.5 truncate">{selectedProv.sektor_dominan}</p>
+            <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700 relative group cursor-pointer">
+              <div className="flex items-center justify-between text-slate-400 text-xs">
+                <span>Sektor Dominan:</span>
+                <span className="text-[10px] text-amber-400/80 group-hover:text-amber-300">Detail &rarr;</span>
+              </div>
+              <p 
+                className="font-extrabold text-white text-sm mt-0.5 truncate group-hover:text-amber-300 transition-colors"
+                title={selectedProv.sektor_dominan}
+              >
+                {selectedProv.sektor_dominan}
+              </p>
               <span className="text-[10px] text-rose-400">Sub-skor: {selectedProv.scores.z_sec}</span>
+              {/* Hover popover */}
+              <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block z-50 p-2.5 bg-slate-950 text-white text-xs rounded-xl shadow-2xl border border-slate-700 max-w-xs pointer-events-none animate-in fade-in">
+                <div className="text-amber-400 text-[10px] font-bold uppercase">Sektor Dominan:</div>
+                <div className="text-white text-xs font-bold leading-snug">{selectedProv.sektor_dominan}</div>
+                <div className="text-slate-400 text-[10px] mt-1">Porsi PDRB: {selectedProv.porsi_sektor_dominan_pct}%</div>
+              </div>
             </div>
           </div>
 

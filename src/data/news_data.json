@@ -130,7 +130,7 @@
     "date": "2026-01-20",
     "source": "BKPM & Pemprov Jawa Timur",
     "url": "https://dpmptsp.jatimprov.go.id",
-    "summary": "Smelter temaga single-line terbesar di dunia di KEK JIIPE Gresik beroperasi penuh, meningkatkan nilai tambah konsentrat temaga dan emas secara domestik.",
+    "summary": "Smelter tembaga single-line terbesar di dunia di KEK JIIPE Gresik beroperasi penuh, meningkatkan nilai tambah konsentrat tembaga dan emas secara domestik.",
     "provinces": [
       "Jawa Timur"
     ],
@@ -139,5 +139,224 @@
       "Perdagangan Besar dan Eceran"
     ],
     "impact": "Memperkuat integrasi rantai pasok industri hilir Jawa Timur dan meningkatkan kontribusi ekspor non-migas."
+  },
+  {
+    "id": "news-09",
+    "title": "Bank Indonesia dan Pemda Akselerasi Pembentukan Regional Investor Relations Unit (RIRU) di 38 Provinsi",
+    "category": "Kelembagaan RIRU",
+    "date": "2026-08-01",
+    "source": "Bank Indonesia & BKPM",
+    "url": "https://www.bi.go.id/id/publikasi/ruang-media/news-release",
+    "summary": "Gubernur Bank Indonesia bersama Menteri Investasi meluncurkan blueprint nasional penguatan RIRU (Regional Investor Relations Unit) guna memfasilitasi investor asing dan domestik melalui portfolio proyek investasi yang 'clean and clear' serta bimbingan perizinan terintegrasi.",
+    "provinces": [
+      "DKI Jakarta",
+      "Jawa Timur",
+      "Jawa Barat",
+      "Jawa Tengah",
+      "Bali",
+      "Sumatera Utara"
+    ],
+    "sectors": [
+      "Jasa Keuangan dan Asuransi",
+      "Industri Pengolahan"
+    ],
+    "impact": "Meningkatkan rasio konversi minat investasi menjadi realisasi nyata hingga 28% dan mempercepat debottlenecking perizinan di daerah."
+  },
+  {
+    "id": "news-10",
+    "title": "Kawasan Industri Terpadu Batang (KITB) Tarik Investasi Panel Surya & Semikonduktor Senilai Rp 45 Triliun",
+    "category": "Manufaktur Hijau",
+    "date": "2026-07-15",
+    "source": "PT Kawasan Industri Terpadu Batang",
+    "url": "https://kitb.id/news",
+    "summary": "Fase lanjutan KITB Jawa Tengah resmi dihuni oleh pabrik kaca surya terintegrasi dan perakitan komponen semikonduktor, menyerap lebih dari 18.000 tenaga kerja terampil lokal.",
+    "provinces": [
+      "Jawa Tengah"
+    ],
+    "sectors": [
+      "Industri Pengolahan",
+      "Konstruksi"
+    ],
+    "impact": "Menurunkan nilai ICOR Jawa Tengah menjadi 4.1 dan mendorong ekspansi manufaktur teknologi tinggi ramah lingkungan."
+  },
+  {
+    "id": "news-11",
+    "title": "Ekspor Olahan Kelapa Sawit & Oleokimia Riau dan Sumatera Utara Catat Rekor Nilai Tambah Tertinggi",
+    "category": "Agribisnis & Hilirisasi",
+    "date": "2026-06-28",
+    "source": "BPS Provinsi Riau & GAPKI",
+    "url": "https://riau.bps.go.id",
+    "summary": "Transformasi ekspor dari CPO mentah menjadi produk hilir seperti fatty acid, surfaktan ramah lingkungan, dan biofuel berhasil menopang surplus perdagangan daerah dan memperkuat ketahanan PDRB Sumatera.",
+    "provinces": [
+      "Riau",
+      "Sumatera Utara"
+    ],
+    "sectors": [
+      "Pertanian, Kehutanan, dan Perikanan",
+      "Industri Pengolahan"
+    ],
+    "impact": "Melipatgandakan nilai ekspor daerah per metrik ton dan menyerap jutaan tenaga kerja di sepanjang rantai nilai agro-industri."
+  },
+  {
+    "id": "news-12",
+    "title": "Proyek Smelter Grade Alumina di Mempawah dan Ketapang Perkuat Kemandirian Logam Ringan Nasional",
+    "category": "Hilirisasi Logam",
+    "date": "2026-06-12",
+    "source": "Dinas ESDM & Pemprov Kalimantan Barat",
+    "url": "https://kalbarprov.go.id",
+    "summary": "Penyelesaian konstruksi fasilitas pemurnian bauksit menjadi alumina di Kalimantan Barat mendorong pertumbuhan PDRB sektor industri pengolahan daerah mencapai dua digit pada kuartal berjalan.",
+    "provinces": [
+      "Kalimantan Barat"
+    ],
+    "sectors": [
+      "Pertambangan dan Penggalian",
+      "Industri Pengolahan"
+    ],
+    "impact": "Mengubah Kalimantan Barat menjadi basis pasokan utama aluminium primer untuk industri otomotif dan konstruksi dalam negeri."
+  },
+  {
+    "id": "news-13",
+    "title": "Kementerian Investasi Perketat Kewajiban Kemitraan PMA dengan Rantai Pasok UMKM Lokal",
+    "category": "Pemberdayaan UMKM",
+    "date": "2026-05-25",
+    "source": "Kementerian Investasi / BKPM",
+    "url": "https://bkpm.go.id/id/publikasi",
+    "summary": "Regulasi baru mewajibkan investor skala besar bermitra dengan pelaku usaha lokal dan koperasi di daerah, menjamin distribusi kue ekonomi dari proyek modal asing tidak bersifat enclave.",
+    "provinces": [
+      "Sulawesi Selatan",
+      "Sumatera Barat",
+      "Jawa Timur",
+      "Lampung"
+    ],
+    "sectors": [
+      "Perdagangan Besar dan Eceran",
+      "Industri Pengolahan"
+    ],
+    "impact": "Meningkatkan Tingkat Kesempatan Kerja (TKK) dan pendapatan riil pekerja lokal di sekitar kawasan ekonomi khusus."
+  },
+  {
+    "id": "news-14",
+    "title": "Minat Investasi Transisi Energi Mengalir Deras ke Sektor Panas Bumi dan PLTS di NTT & Sumbar",
+    "category": "Transisi Energi",
+    "date": "2026-05-02",
+    "source": "Kementerian ESDM & PLN",
+    "url": "https://esdm.go.id/id/berita-unit",
+    "summary": "Konsorsium investor internasional dari Eropa dan Asia Pasifik mengucurkan dana pada proyek geothermal Muara Laboh serta mega PLTS terapung di Nusa Tenggara Timur.",
+    "provinces": [
+      "Sumatera Barat",
+      "Nusa Tenggara Timur"
+    ],
+    "sectors": [
+      "Pengadaan Listrik dan Gas",
+      "Konstruksi"
+    ],
+    "impact": "Memperbaiki peringkat kesiapan RIRU daerah melalui implementasi prinsip Green Taxonomy dan penyediaan energi bersih stabil."
+  },
+  {
+    "id": "news-15",
+    "title": "Fasilitas Kilang LNG Tangguh Train 3 Beroperasi Penuh, Sumbang Lonjakan Ekspor Papua Barat",
+    "category": "Migas & Energi",
+    "date": "2026-04-05",
+    "source": "SKK Migas & Pemprov Papua Barat",
+    "url": "https://papuabaratprov.go.id",
+    "summary": "Peningkatan kapasitas produksi gas alam cair di Teluk Bintuni memperkuat penerimaan PDRB Papua Barat dan menjadikannya salah satu pilar ketahanan energi nasional dan ekspor Asia.",
+    "provinces": [
+      "Papua Barat"
+    ],
+    "sectors": [
+      "Pertambangan dan Penggalian",
+      "Industri Pengolahan"
+    ],
+    "impact": "Meningkatkan kontribusi dana bagi hasil (DBH) migas untuk pembangunan sarana pendidikan dan kesehatan di Tanah Papua."
+  },
+  {
+    "id": "news-16",
+    "title": "Modernisasi Makassar New Port Pangkas Biaya Logistik dan Tekan ICOR Kawasan Timur Indonesia",
+    "category": "Infrastruktur & Logistik",
+    "date": "2026-03-18",
+    "source": "PT Pelabuhan Indonesia (Pelindo)",
+    "url": "https://pelindo.co.id/media",
+    "summary": "Kapasitas throughput peti kemas yang meningkat dua kali lipat berhasil memangkas dwelling time pelayaran antar-pulau dari Sulawesi ke Jawa dan pasar ekspor Asia Timur.",
+    "provinces": [
+      "Sulawesi Selatan"
+    ],
+    "sectors": [
+      "Transportasi dan Pergudangan",
+      "Perdagangan Besar dan Eceran"
+    ],
+    "impact": "Menekan nilai ICOR logistik dan menarik investasi pergudangan rantai dingin (cold storage) untuk hasil perikanan dan pertanian."
+  },
+  {
+    "id": "news-17",
+    "title": "Industri Kreatif Digital & Jasa Perusahaan di DI Yogyakarta Tunjukkan Efisiensi Modal Terbaik (Low ICOR)",
+    "category": "Ekonomi Digital",
+    "date": "2026-02-28",
+    "source": "BPS DI Yogyakarta & Kemenparekraf",
+    "url": "https://jogja.bps.go.id",
+    "summary": "Pertumbuhan pesat studio animasi, pengembang perangkat lunak, dan startup teknologi informasi membukukan efisiensi alokasi modal (ICOR 3.2), tertinggi di antara provinsi-provinsi di Jawa.",
+    "provinces": [
+      "DI Yogyakarta"
+    ],
+    "sectors": [
+      "Informasi dan Komunikasi",
+      "Jasa Perusahaan"
+    ],
+    "impact": "Menjadi bukti nyata keberhasilan model pembangunan ekonomi berbasis pengetahuan (*knowledge-based economy*) padat karya terampil."
+  },
+  {
+    "id": "news-18",
+    "title": "Modernisasi Pertanian Presisi & Food Estate Tingkatkan Ketahanan PDRB NTB dan Kalimantan Tengah",
+    "category": "Ketahanan Pangan",
+    "date": "2026-02-05",
+    "source": "Kementerian Pertanian RI",
+    "url": "https://pertanian.go.id",
+    "summary": "Penerapan mekanisasi modern dan irigasi tetes pada budidaya jagung dan padi di NTB serta Kalteng mendongkrak produktivitas panen petani hingga 35% dan menarik investasi pengolahan pakan ternak.",
+    "provinces": [
+      "Nusa Tenggara Barat",
+      "Kalimantan Tengah"
+    ],
+    "sectors": [
+      "Pertanian, Kehutanan, dan Perikanan",
+      "Industri Pengolahan"
+    ],
+    "impact": "Memperkuat bantalan ekonomi daerah terhadap gejolak inflasi pangan dan meningkatkan pendapatan petani pedesaan."
+  },
+  {
+    "id": "news-19",
+    "title": "Kawasan Ekonomi Khusus (KEK) Galang Batang Kepri Perluas Rantai Pasok Industri Semikonduktor & Elektronika",
+    "category": "Kawasan Industri",
+    "date": "2026-01-15",
+    "source": "Administrator KEK Kepulauan Riau",
+    "url": "https://kek.go.id",
+    "summary": "Lokasi strategis di Selat Malaka menjadikan Kepulauan Riau magnet utama investasi foreign direct investment (FDI) perakitan elektronik presisi dan suku cadang telekomunikasi.",
+    "provinces": [
+      "Kepulauan Riau"
+    ],
+    "sectors": [
+      "Industri Pengolahan",
+      "Perdagangan Besar dan Eceran"
+    ],
+    "impact": "Menempatkan Kepri sebagai salah satu kontributor ekspor manufaktur terbesar di luar Pulau Jawa dengan akses langsung pasar Singapura."
+  },
+  {
+    "id": "news-20",
+    "title": "Kementerian Investasi Resmi Luncurkan Sistem Digital Pemantauan RIRU Terintegrasi OSS Berbasis AI",
+    "category": "Reformasi Perizinan",
+    "date": "2026-01-08",
+    "source": "Kementerian Investasi / BKPM RI",
+    "url": "https://bkpm.go.id/id/publikasi",
+    "summary": "Platform monitoring terpadu menghubungkan langsung unit RIRU di 38 provinsi dengan database Online Single Submission (OSS), memungkinkan pengambil kebijakan melacak realisasi modal dan penyelesaian hambatan investasi secara real-time.",
+    "provinces": [
+      "DKI Jakarta",
+      "Jawa Barat",
+      "Jawa Timur",
+      "Sumatera Utara",
+      "Sulawesi Tengah"
+    ],
+    "sectors": [
+      "Jasa Perusahaan",
+      "Administrasi Pemerintahan"
+    ],
+    "impact": "Memangkas rata-rata waktu penyelesaian kendala perizinan (*SLA debottlenecking*) dari 45 hari kerja menjadi kurang dari 7 hari kerja."
   }
 ]

@@ -22,7 +22,9 @@ export default function RegionalPage() {
   const [endYear, setEndYear] = useState<number>(2026);
 
   const yearsList = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
-  const provList = useMemo(() => riruProvinces.map((p) => p.provinsi), [riruProvinces]);
+  const provList = useMemo(() => {
+    return [...riruProvinces.map((p) => p.provinsi.trim())].sort((a, b) => a.localeCompare(b, "id"));
+  }, [riruProvinces]);
 
   const provData = useMemo(() => {
     return mergedData.filter((d) => d.provinsi === selectedProvince && d.tahun >= startYear && d.tahun <= endYear);
@@ -42,14 +44,14 @@ export default function RegionalPage() {
 
   return (
     <div className="space-y-8">
-      {/* Page Title */}
+      {/* Page Title: Left-aligned, no badge pill */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-black text-[#0f172a] flex items-center gap-3">
           <MapPin className="w-7 h-7 text-blue-900" />
-          Dossier Regional: Profil Makroekonomi &amp; Kesiapan RIRU Daerah
+          Profil Makroekonomi &amp; Kesiapan RIRU Daerah
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-          Eksplorasi mendalam kinerja investasi modal, PDRB, ekspor, efisiensi ICOR, serta kesiapan Regional Investment Relations Unit (RIRU) per provinsi periode 2015&ndash;2026.
+          Eksplorasi mendalam kinerja investasi modal, PDRB, ekspor, efisiensi ICOR, serta kesiapan Regional Investor Relations Unit (RIRU) per provinsi periode 2015&ndash;2026.
         </p>
       </div>
 
@@ -98,7 +100,7 @@ export default function RegionalPage() {
 
       </div>
 
-      {/* Hero Province Dossier Banner */}
+      {/* Hero Province Banner */}
       {riru && (
         <div className="p-6 rounded-2xl bg-gradient-to-r from-[#0b192e] via-blue-950 to-slate-900 text-white shadow-lg space-y-4 border border-blue-900/60">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
@@ -154,10 +156,28 @@ export default function RegionalPage() {
               <span className="text-[10px] text-cyan-400">{riru.avg_icor <= 6.0 ? "Sangat Efisien" : "Capital-Intensive"}</span>
             </div>
 
-            <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700">
-              <span className="text-slate-400 font-medium">6. Sektor Dominan:</span>
-              <p className="font-extrabold text-white text-sm mt-1 truncate">{riru.sektor_dominan}</p>
-              <span className="text-[10px] text-rose-400">Pangsa: {riru.porsi_sektor_dominan_pct}%</span>
+            <div className="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700 relative group cursor-pointer">
+              <div className="flex items-center justify-between">
+                <span className="text-slate-400 font-medium">6. Sektor Dominan:</span>
+                <span className="text-[10px] text-slate-400 group-hover:text-amber-400 transition-colors">Arahkan kursor &rarr;</span>
+              </div>
+              <p 
+                className="font-extrabold text-white text-sm mt-1 truncate group-hover:text-amber-300 transition-colors"
+                title={riru.sektor_dominan}
+              >
+                {riru.sektor_dominan}
+              </p>
+              <span className="text-[10px] text-rose-400 font-semibold">Pangsa PDRB: {riru.porsi_sektor_dominan_pct}%</span>
+
+              {/* Hovering Popover Card */}
+              <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block z-50 p-3 bg-slate-950 text-white text-xs rounded-xl shadow-2xl border border-slate-700 max-w-xs pointer-events-none animate-in fade-in">
+                <div className="text-amber-400 text-[10px] font-bold uppercase tracking-wider mb-1">Nama Sektor Lengkap:</div>
+                <div className="text-white text-xs font-bold leading-snug">{riru.sektor_dominan}</div>
+                <div className="text-slate-300 text-[10px] mt-1.5 pt-1.5 border-t border-slate-800 flex justify-between">
+                  <span>Kontribusi PDRB:</span>
+                  <span className="text-amber-400 font-bold">{riru.porsi_sektor_dominan_pct}%</span>
+                </div>
+              </div>
             </div>
           </div>
 
